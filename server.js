@@ -1,16 +1,9 @@
-var http = require('http')
-  , io = require('socket.io')
-  , router = require('./lib/router')
-  , server = http.createServer(router.route)
+var io = require('socket.io')
+  , pool = require('./lib/pool')
   , util = require('util');
   
-io = io.listen(server);
-server.listen(8080);
+io = io.listen(8080);
 
-io.sockets.on('connection', function (socket) {
-  
-  socket.emit("message", {fuck: 'you'});
-  
-});
+io.sockets.on('connection', pool.connect);
 
 

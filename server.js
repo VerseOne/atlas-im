@@ -5,5 +5,3 @@ var io = require('socket.io')
 io = io.listen(8080);
 
 io.sockets.on('connection', pool.connect);
-
-
